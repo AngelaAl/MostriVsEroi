@@ -39,7 +39,7 @@ namespace MostriVsEroi.Core.Entities
         //Override ToString
         public override string ToString()
         {
-            return $"{Nome} \t Classe: {Classe} \t Arma: {ArmaScelta} \t Livello: {Livello} \t PV: {PuntiVita} \t Punti accumulati: {PuntiAccumulati} \t Giocatore: {GiocatoreAssegnato}";
+            return $"{Nome} \t Classe: {Classe} \t Arma: {ArmaScelta.NomeArma} \t Livello: {Livello} \t PV: {PuntiVita} \t Punti accumulati: {PuntiAccumulati} \t Giocatore: {GiocatoreAssegnato}";
         }
 
         //Fuga

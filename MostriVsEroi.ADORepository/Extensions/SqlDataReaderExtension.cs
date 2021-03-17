@@ -84,5 +84,15 @@ namespace MostriVsEroi.ADORepository.Extensions
                 Classe = reader["Classe"].ToString()
             };
         }
+
+        public static Livello ToLivello(this SqlDataReader reader)
+        {
+            return new Livello()
+            {
+                Numero = (int)reader["ID"],
+                PuntiVita = (int)reader["PuntiVita"],
+                PuntiPerPassaggio = (int)reader["PuntiPerPassaggio"]
+            };
+        }
     }
 }

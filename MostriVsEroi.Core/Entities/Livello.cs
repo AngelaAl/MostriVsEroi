@@ -10,6 +10,7 @@ namespace MostriVsEroi.Core.Entities
 
         public int PuntiVita { get; set; }
 
+        public int PuntiPerPassaggio { get; set; }
 
     }
 }

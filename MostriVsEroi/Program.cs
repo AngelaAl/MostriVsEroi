@@ -87,7 +87,7 @@ namespace MostriVsEroi
             {
                 InterazioneUtente.MenuGiocatore(giocatore);
                 
-                Console.WriteLine("Se vuoi uscire dal gioco premi q, altrimenti premi un altro tasto per tornare al Menù Principale");
+                Console.WriteLine("\nSe vuoi uscire dal gioco premi q, altrimenti premi un altro tasto per tornare al Menù Principale");
                 Console.WriteLine("\n");
                 key = Console.ReadKey().KeyChar;
             }
