@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MostriVsEroi.Core.Entities;
 
 namespace MostriVsEroi.Core.Interfaces
 {
-    interface IEroeRepository
+    public interface IEroeRepository : IRepository<Eroe>
     {
+        IEnumerable<Eroe> GetByGiocatore(Giocatore giocatore);
     }
 }

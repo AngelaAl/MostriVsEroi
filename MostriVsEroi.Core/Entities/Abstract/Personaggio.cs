@@ -12,9 +12,17 @@ namespace MostriVsEroi.Core.Entities.Abstract
 
         public Arma ArmaScelta{ get; set; }
 
-        public Livello LivelloPersonaggio { get; set; }
+        //public Livello LivelloPersonaggio { get; set; }
 
+
+        //METODI
         abstract public override string ToString();
+
+        //Attacca
+        public int Attacca()
+        {
+            return ArmaScelta.PuntiDanno;
+        }
         
     }
 }

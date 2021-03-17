@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "MostriVsEroi.Services/1.0.0": {
+        "dependencies": {
+          "MostriVsEroi.Core": "1.0.0"
+        },
+        "runtime": {
+          "MostriVsEroi.Services.dll": {}
+        }
+      },
+      "MostriVsEroi.Core/1.0.0": {
+        "runtime": {
+          "MostriVsEroi.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MostriVsEroi.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MostriVsEroi.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

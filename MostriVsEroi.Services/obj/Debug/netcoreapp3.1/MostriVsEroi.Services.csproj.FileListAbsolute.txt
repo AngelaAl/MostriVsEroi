@@ -1,0 +1,12 @@
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\bin\Debug\netcoreapp3.1\MostriVsEroi.Services.deps.json
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\bin\Debug\netcoreapp3.1\MostriVsEroi.Services.dll
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\bin\Debug\netcoreapp3.1\MostriVsEroi.Services.pdb
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\bin\Debug\netcoreapp3.1\MostriVsEroi.Core.dll
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\bin\Debug\netcoreapp3.1\MostriVsEroi.Core.pdb
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\obj\Debug\netcoreapp3.1\MostriVsEroi.Services.csprojAssemblyReference.cache
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\obj\Debug\netcoreapp3.1\MostriVsEroi.Services.AssemblyInfoInputs.cache
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\obj\Debug\netcoreapp3.1\MostriVsEroi.Services.AssemblyInfo.cs
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\obj\Debug\netcoreapp3.1\MostriVsEroi.Services.csproj.CoreCompileInputs.cache
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\obj\Debug\netcoreapp3.1\MostriVsEroi.Services.csproj.CopyComplete
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\obj\Debug\netcoreapp3.1\MostriVsEroi.Services.dll
+C:\Users\angela.alunni\Desktop\MostriVsEroi\MostriVsEroi\MostriVsEroi.Services\obj\Debug\netcoreapp3.1\MostriVsEroi.Services.pdb

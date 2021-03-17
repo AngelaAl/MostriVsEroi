@@ -4,7 +4,14 @@ using System.Text;
 
 namespace MostriVsEroi.Core.Interfaces
 {
-    interface IRepository
+    public interface IRepository<T>
     {
+        //CRUD
+        void Create(T obj);
+        
+        
+        IEnumerable<T> GetAll();
+        bool Update(T obj);
+        bool Delete(T obj);
     }
 }

@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "D9NKJs65r5SvEnPYnpN0eyBl+oyQNbGBp8gjRj/V1EcMEgO13kJetL/Ku5XbRRxPxL4tchO0AvKaCEPPT8AEew==",
+  "dgSpecHash": "r4OlLaWNHRIcr7ShifAQfBQAU6sCsaeqaBbCrJqP2xllSd7xIQJcfGPI20x3oLbdFSBDvc5n176jrTa/bmS7qw==",
   "success": true,
   "projectFilePath": "C:\\Users\\angela.alunni\\Desktop\\MostriVsEroi\\MostriVsEroi\\MostriVsEroi.ADORepository\\MostriVsEroi.ADORepository.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\system.data.sqlclient.4.8.2.nupkg.sha512",
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\angela.alunni\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }
