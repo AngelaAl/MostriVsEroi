@@ -113,7 +113,33 @@ namespace MostriVsEroi.ADORepository
 
         public bool Update(Eroe obj)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Aprire la connessione
+                connection.Open();
+
+                //Creo il comando
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "UPDATE Eroi SET Livello = @livello, PuntiVita = @puntiVita, PuntiAccumulati = @puntiAccumulati WHERE NomeEroe = @nome";
+
+                //Valori
+                command.Parameters.AddWithValue("@nome", obj.Nome);
+                command.Parameters.AddWithValue("@livello", obj.Livello);
+                command.Parameters.AddWithValue("@puntiVita", obj.PuntiVita);
+                command.Parameters.AddWithValue("@puntiAccumulati", obj.PuntiAccumulati);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

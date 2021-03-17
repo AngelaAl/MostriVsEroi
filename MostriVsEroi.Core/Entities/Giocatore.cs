@@ -17,5 +17,11 @@ namespace MostriVsEroi.Core.Entities
         }
 
         public Giocatore() { }
+
+        //Override ToString
+        public override string ToString()
+        {
+            return $"{Nome} \t Ruolo: {Ruolo}";
+        }
     }
 }

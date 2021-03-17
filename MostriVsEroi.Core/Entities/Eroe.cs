@@ -19,6 +19,8 @@ namespace MostriVsEroi.Core.Entities
 
         public int Livello { get; set; }
 
+       
+
         //Costruttore
         public Eroe(string nome, string classe, Arma arma, string giocatore)
         {
@@ -29,6 +31,7 @@ namespace MostriVsEroi.Core.Entities
             PuntiVita = 20;
             PuntiAccumulati = 0;
             GiocatoreAssegnato = giocatore;
+            
         }
 
         public Eroe() { }

@@ -9,10 +9,20 @@ namespace MostriVsEroi.Core.Entities
     {
         public Livello LivelloMostro { get; set; }
 
+        public Mostro() { }
+
+        public Mostro(string nome, string classe, Arma armaScelta, Livello livello)
+        {
+            Nome = nome;
+            Classe = classe;
+            ArmaScelta = armaScelta;
+            LivelloMostro = livello;
+        }
+
         //Override ToString
         public override string ToString()
         {
-            return $"{Nome} \t Classe: {Classe} \t Arma: {ArmaScelta} \t Livello: {LivelloMostro.Numero}";
+            return $"{Nome} \t Classe: {Classe} \t Arma: {ArmaScelta.NomeArma} \t Livello: {LivelloMostro.Numero} \t Punti Vita: {LivelloMostro.PuntiVita}";
         }
 
         

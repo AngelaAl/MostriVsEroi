@@ -8,28 +8,39 @@ using System.Text;
 
 namespace MostriVsEroi.ADORepository
 {
-    public class ADOClassiRepository : IClasseRepository
+    public class ADOGiocatoreRepository : IGiocatoreRepository
     {
         const string connectionString = @"Persist Security Info = False; Integrated Security = true; Initial Catalog = MostriVsEroi; Server = .\SQLEXPRESS";
 
-        public void Create(Classe obj)
+        public void Create(Giocatore obj)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Aprire la connessione
+                connection.Open();
+
+                //Creo il comando
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "INSERT INTO Giocatori (NomeGiocatore, Ruolo) VALUES (@nome, @ruolo)";
+
+                //Valori
+                command.Parameters.AddWithValue("@nome", obj.Nome);
+                command.Parameters.AddWithValue("@ruolo", obj.Ruolo);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public bool Delete(Giocatore obj)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(Classe obj)
+        public IEnumerable<Giocatore> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Classe> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Classe> GetByFilter(int filter)
-        {
-            List<Classe> classi = new List<Classe>();
+            List<Giocatore> giocatori = new List<Giocatore>();
 
             //ADO
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -41,11 +52,8 @@ namespace MostriVsEroi.ADORepository
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT * FROM Classi WHERE Eroe = @filter";
+                command.CommandText = "SELECT * FROM Giocatori";
 
-                //Parametro
-                //SqlParameter nomeParam = new SqlParameter();
-                command.Parameters.AddWithValue("@filter", filter);
 
                 //Esecuzione
                 SqlDataReader reader = command.ExecuteReader();
@@ -53,18 +61,17 @@ namespace MostriVsEroi.ADORepository
                 //Lettura dati
                 while (reader.Read())
                 {
-                    classi.Add(reader.ToClasse());
+                    giocatori.Add(reader.ToGiocatore());
                 }
 
                 //Chiudo connessione
                 reader.Close();
                 connection.Close();
             }
-            return classi;
-
+            return giocatori;
         }
 
-        public bool Update(Classe obj)
+        public bool Update(Giocatore obj)
         {
             throw new NotImplementedException();
         }

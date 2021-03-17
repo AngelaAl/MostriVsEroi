@@ -17,28 +17,82 @@ namespace MostriVsEroi
 
             
             var eroeService = new EroeService(new ADOEroeRepository());
+            var mostroService = new MostroService(new ADOMostroRepository());
+            var giocatoreService = new GiocatoreService(new ADOGiocatoreRepository());
 
-            var giocatore = new Giocatore(){Nome = "Angela", Ruolo = "Admin" };
+            //var giocatore = new Giocatore(){Nome = "Angela", Ruolo = "Admin" };
 
             //--------------------------------------------------------
             //FUNZIONA GET
             //var eroi = eroeService.GetAllEroiByGiocatori(giocatore);
 
-            //foreach(var eroe in eroi)
+            //foreach (var eroe in eroi)
             //{
             //    Console.WriteLine(eroe.ToString());
             //}
 
-            var arma = new Arma() { NomeArma = "Bacchetta", Classe = "Mago", PuntiDanno = 5 };
-            var eroe = new Eroe("Merlino", "Mago", arma, giocatore.Nome) { };
+            //var arma = new Arma() { NomeArma = "Bacchetta", Classe = "Mago", PuntiDanno = 5 };
+            //var eroe = new Eroe("Merlino", "Mago", arma, giocatore.Nome) { };
 
             //------------------------------------------------------
             //FUNZIONA CREATE
             //eroeService.CreateNewEroe(eroe);
 
             //----------------------------------------------------------
-            //
-            var b = eroeService.DeleteEroe(eroe);
+            //FUNZIONA DELETE
+            //var b = eroeService.DeleteEroe(eroe);
+
+            //------------------------------------------------------------
+            //FUNZIONA UPDATE
+            //eroe.PuntiAccumulati = 40;
+            //var b = eroeService.UpdateEroe(eroe);
+
+            //-------------------------------------------------------
+            //CREATE MOSTRO
+            //var livello = new Livello() { Numero = 2, PuntiVita = 40 };
+            //var arma = new Arma() { NomeArma = "Clava", Classe = "Orco", PuntiDanno = 5 };
+            //var mostro = new Mostro("Zuru", "Orco", arma, livello);
+            //mostroService.CreateNewMostro(mostro);
+
+
+            //----------------------------------------------------------
+            //FUNZIONA GET
+            //var mostri = mostroService.GetMostriByLivello(2);
+
+            //foreach (var mostro in mostri)
+            //{
+            //    Console.WriteLine(mostro.ToString());
+            //}
+
+            //--------------------------------------------------------
+            //FUNZIONA GET UTENTi
+            //var giocatori = giocatoreService.GetAllGiocatori();
+
+            //foreach (var giocatore in giocatori)
+            //{
+            //    Console.WriteLine(giocatore.ToString());
+            //}
+
+            char key;
+
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("BENVENUTO A MOSTRI VS EROI!");
+            Console.ResetColor();
+            var giocatore = InterazioneUtente.Giocatore();
+            
+
+
+            do
+            {
+                InterazioneUtente.MenuGiocatore(giocatore);
+                
+                Console.WriteLine("Se vuoi uscire dal gioco premi q, altrimenti premi un altro tasto per tornare al Menù Principale");
+                Console.WriteLine("\n");
+                key = Console.ReadKey().KeyChar;
+            }
+            while (key != 'q');
+
         }
     }
 }

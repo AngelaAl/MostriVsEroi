@@ -29,6 +29,12 @@ namespace MostriVsEroi.Services
             return _repo.Delete(eroe);
         }
 
+        public bool UpdateEroe(Eroe eroe)
+        {
+            return _repo.Update(eroe);
+        }
+
+       
         
 
 
