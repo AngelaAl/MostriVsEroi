@@ -94,5 +94,16 @@ namespace MostriVsEroi.ADORepository.Extensions
                 PuntiPerPassaggio = (int)reader["PuntiPerPassaggio"]
             };
         }
+
+        public static Statistica ToStatistica(this SqlDataReader reader)
+        {
+            return new Statistica()
+            {
+                NomeEroe = reader["NomeEroe"].ToString(),
+                TempoTotaleGioco = (int)reader["TempoTotaleGioco"],
+                PuntiAccumulati = (int)reader["PuntiAccumulati"],
+                GiocatoreAssegnato = reader["NomeGiocatore"].ToString()
+            };
+        }
     }
 }

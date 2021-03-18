@@ -21,7 +21,7 @@ namespace MostriVsEroi.Core.Entities
         //Override ToString
         public override string ToString()
         {
-            return $"{Nome} \t Ruolo: {Ruolo}";
+            return $"{Nome}";
         }
     }
 }

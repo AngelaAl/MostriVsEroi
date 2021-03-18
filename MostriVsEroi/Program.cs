@@ -13,12 +13,13 @@ namespace MostriVsEroi
 
             //EroeService eroeService = serviceProvider.GetService<EroeService>();
 
-
+            
 
             
             var eroeService = new EroeService(new ADOEroeRepository());
             var mostroService = new MostroService(new ADOMostroRepository());
             var giocatoreService = new GiocatoreService(new ADOGiocatoreRepository());
+            var statisticaService = new StatisticaService(new ADOStatisticaRepository());
 
             //var giocatore = new Giocatore(){Nome = "Angela", Ruolo = "Admin" };
 
@@ -31,8 +32,8 @@ namespace MostriVsEroi
             //    Console.WriteLine(eroe.ToString());
             //}
 
-            //var arma = new Arma() { NomeArma = "Bacchetta", Classe = "Mago", PuntiDanno = 5 };
-            //var eroe = new Eroe("Merlino", "Mago", arma, giocatore.Nome) { };
+            //var arma = new Arma() { NomeArma = "Spada", Classe = "Guerriero", PuntiDanno = 10 };
+            //var eroe = new Eroe("Pina", "Guerriero", arma, "Angela") { };
 
             //------------------------------------------------------
             //FUNZIONA CREATE
@@ -72,6 +73,14 @@ namespace MostriVsEroi
             //{
             //    Console.WriteLine(giocatore.ToString());
             //}
+
+            //---------------------------------------------------------
+            //FUNZOINA CREATE statistica
+            //var statistica = new Statistica(eroe) { };
+            //statisticaService.CreateNewStatistica(statistica);
+
+
+
 
             char key;
 

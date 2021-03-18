@@ -32,6 +32,9 @@ namespace MostriVsEroi
                 .AddScoped<LivelloService>()
                 .AddScoped<ILivelloRepository, ADOLivelloRepository>()
 
+                .AddScoped<StatisticaService>()
+                .AddScoped<IStatisticaRepository, ADOStatisticaRepository>()
+
                 .BuildServiceProvider();
         }
     }

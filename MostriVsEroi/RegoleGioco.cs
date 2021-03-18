@@ -46,7 +46,7 @@ namespace MostriVsEroi
         {
             foreach(Livello livello in livelli)
             {
-                if(eroe.PuntiAccumulati>= livello.PuntiPerPassaggio)
+                if(livello.Numero > eroe.Livello && eroe.PuntiAccumulati>= livello.PuntiPerPassaggio)
                 {
                     eroe.Livello = livello.Numero;
                     eroe.PuntiVita = livello.PuntiVita;
@@ -64,6 +64,13 @@ namespace MostriVsEroi
             return classi;
         }
 
+        public static List<Classe> ClassiPerMostro()
+        {
+            ClasseService classeService = serviceProvider.GetService<ClasseService>();
+            var classi = classeService.GetClassiFiltrate(0).ToList();
+            return classi;
+        }
+
         public static List<Arma> ArmiPerClasse(Classe classe)
         {
             ArmaService armaService = serviceProvider.GetService<ArmaService>();
@@ -74,7 +81,10 @@ namespace MostriVsEroi
         public static void CreaEroe(Eroe eroe)
         {
             EroeService eroeService = serviceProvider.GetService<EroeService>();
+            StatisticaService statisticaService = serviceProvider.GetService<StatisticaService>();
             eroeService.CreateNewEroe(eroe);
+            var statistica = new Statistica(eroe) { };
+            statisticaService.CreateNewStatistica(statistica);
         }
 
         public static void EliminaEroe(Eroe eroe)
@@ -105,6 +115,34 @@ namespace MostriVsEroi
             return mostri[indiceEstratto];
         }
 
-        
+        public static void AggiornaStatistica(Eroe eroe, int millisecondi)
+        {
+            StatisticaService statisticaService = serviceProvider.GetService<StatisticaService>();
+            statisticaService.UpdateStatistica(eroe, millisecondi);
+        }
+
+        public static void CreaMostro(Mostro mostro)
+        {
+            MostroService mostroService = serviceProvider.GetService<MostroService>();
+            mostroService.CreateNewMostro(mostro);
+        }
+
+        public static List<Statistica> AllStatistiche()
+        {
+            StatisticaService statisticaService = serviceProvider.GetService<StatisticaService>();
+            return statisticaService.GetStatistiche().ToList();
+        }
+
+        public static List<Statistica> StatisticheByGiocatore(Giocatore giocatore)
+        {
+            StatisticaService statisticaService = serviceProvider.GetService<StatisticaService>();
+            return statisticaService.GetStatisticheByGiocatore(giocatore).ToList();
+        }
+
+        public static List<Giocatore> AllGiocatori()
+        {
+            GiocatoreService giocatoreService = serviceProvider.GetService<GiocatoreService>();
+            return giocatoreService.GetAllGiocatori().ToList();
+        }
     }
 }

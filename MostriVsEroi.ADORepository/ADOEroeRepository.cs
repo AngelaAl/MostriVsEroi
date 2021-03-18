@@ -44,10 +44,12 @@ namespace MostriVsEroi.ADORepository
                 connection.Open();
 
                 //Comando
+                string deleteFromStatistiche = "DELETE FROM Statistiche WHERE NomeEroe = @nomeEroe";
+                string deleteFromEroe = " DELETE FROM Eroi WHERE NomeEroe = @nomeEroe";
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "DELETE FROM Eroi WHERE NomeEroe = @nomeEroe";
+                command.CommandText = deleteFromStatistiche + deleteFromEroe;
 
                 command.Parameters.AddWithValue("@nomeEroe", obj.Nome);
 
