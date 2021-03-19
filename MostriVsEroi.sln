@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostriVsEroi", "MostriVsEroi\MostriVsEroi.csproj", "{4A763255-836E-4975-8C18-5A75BBC66B25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MostriVsEroi", "MostriVsEroi\MostriVsEroi.csproj", "{4A763255-836E-4975-8C18-5A75BBC66B25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostriVsEroi.ADORepository", "MostriVsEroi.ADORepository\MostriVsEroi.ADORepository.csproj", "{0433786E-B29F-4FF3-99AD-F30943845CC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MostriVsEroi.ADORepository", "MostriVsEroi.ADORepository\MostriVsEroi.ADORepository.csproj", "{0433786E-B29F-4FF3-99AD-F30943845CC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostriVsEroi.Core", "MostriVsEroi.Core\MostriVsEroi.Core.csproj", "{E3A1ADC3-0330-4ECA-9D3B-2ED91DE888F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MostriVsEroi.Core", "MostriVsEroi.Core\MostriVsEroi.Core.csproj", "{E3A1ADC3-0330-4ECA-9D3B-2ED91DE888F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostriVsEroi.Services", "MostriVsEroi.Services\MostriVsEroi.Services.csproj", "{40E34AD4-4209-4EAA-9F9D-F5C885CB6BE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MostriVsEroi.Services", "MostriVsEroi.Services\MostriVsEroi.Services.csproj", "{40E34AD4-4209-4EAA-9F9D-F5C885CB6BE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

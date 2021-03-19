@@ -73,7 +73,35 @@ namespace MostriVsEroi.ADORepository
 
         public IEnumerable<Eroe> GetAll()
         {
-            throw new NotImplementedException();
+            List<Eroe> eroi = new List<Eroe>();
+
+            //ADO
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Apro la connessione
+                connection.Open();
+
+                //Comando
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "SELECT * FROM Eroi";
+
+
+                //Esecuzione
+                SqlDataReader reader = command.ExecuteReader();
+
+                //Lettura dati
+                while (reader.Read())
+                {
+                    eroi.Add(reader.ToEroe());
+                }
+
+                //Chiudo connessione
+                reader.Close();
+                connection.Close();
+            }
+            return eroi;
         }
 
         public IEnumerable<Eroe> GetByGiocatore(Giocatore giocatore)
@@ -111,6 +139,39 @@ namespace MostriVsEroi.ADORepository
                 connection.Close();
             }
             return eroi;
+        }
+
+        public IEnumerable<string> GetNomiEroi()
+        {
+            List<string> nomiEroi = new List<string>();
+
+            //ADO
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Apro la connessione
+                connection.Open();
+
+                //Comando
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "SELECT NomeEroe FROM Eroi";
+
+
+                //Esecuzione
+                SqlDataReader reader = command.ExecuteReader();
+
+                //Lettura dati
+                while (reader.Read())
+                {
+                    nomiEroi.Add(reader.ToNomeEroe());
+                }
+
+                //Chiudo connessione
+                reader.Close();
+                connection.Close();
+            }
+            return nomiEroi;
         }
 
         public bool Update(Eroe obj)

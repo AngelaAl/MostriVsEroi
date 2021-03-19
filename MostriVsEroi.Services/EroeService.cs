@@ -34,6 +34,12 @@ namespace MostriVsEroi.Services
             return _repo.Update(eroe);
         }
 
+        
+        public IEnumerable<string> GetAllNomiEroi()
+        {
+            return _repo.GetNomiEroi();
+        }
+
        
         
 

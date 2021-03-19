@@ -34,6 +34,11 @@ namespace MostriVsEroi.ADORepository.Extensions
             };
         }
 
+        public static string ToNomeEroe(this SqlDataReader reader)
+        {
+            return reader["NomeEroe"].ToString();
+        }
+
         public static Mostro ToMostro(this SqlDataReader reader)
         {
             var armaMostro = new Arma()

@@ -9,7 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MostriVsEroi
 {
-
+    //Ho creato questa classe per raggruppare tutti i metodi che utilizzano il Service Provider
+    //Ho cercato di non inserire interazione con l'utente
+    //Tutti questi metodi sono utilizzati nella classe InterazioneUtente
     public static class RegoleGioco
     {
         private static ServiceProvider serviceProvider = DIConfiguration.Configurazione();
@@ -78,6 +80,20 @@ namespace MostriVsEroi
             return armi;
         }
 
+        public static bool ControlloNomeEroeUnico(string nomeNuovoEroe)
+        {
+            EroeService eroeService = serviceProvider.GetService<EroeService>();
+            var nomiEroiEsistenti = eroeService.GetAllNomiEroi();
+            foreach(string nome in nomiEroiEsistenti)
+            {
+                if(nomeNuovoEroe == nome)
+                {
+                    return false;
+                }
+            }
+            return true;
+
+        }
         public static void CreaEroe(Eroe eroe)
         {
             EroeService eroeService = serviceProvider.GetService<EroeService>();

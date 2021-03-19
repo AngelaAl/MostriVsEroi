@@ -28,7 +28,9 @@ namespace MostriVsEroi.Core.Entities
         //Override ToString
         public override string ToString()
         {
-            return $"Giocatore: {GiocatoreAssegnato} \t Eroe: {NomeEroe} \t PuntiAccumulati: {PuntiAccumulati} \t Tempo Totale di Gioco: {TempoTotaleGioco / 60000} minuti";
+            return $"Eroe: {NomeEroe} \t PuntiAccumulati: {PuntiAccumulati} \t Tempo Totale di Gioco: {TempoTotaleGioco / 60000} minuti";
         }
+
+        
     }
 }
