@@ -16,20 +16,31 @@ namespace MostriVsEroi.ADORepository
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Aprire la connessione
-                connection.Open();
+                try
+                {
+                    //Aprire la connessione
+                    connection.Open();
 
-                //Creo il comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "INSERT INTO Giocatori (NomeGiocatore, Ruolo) VALUES (@nome, @ruolo)";
+                    //Creo il comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "INSERT INTO Giocatori (NomeGiocatore, Ruolo) VALUES (@nome, @ruolo)";
 
-                //Valori
-                command.Parameters.AddWithValue("@nome", obj.Nome);
-                command.Parameters.AddWithValue("@ruolo", obj.Ruolo);
+                    //Valori
+                    command.Parameters.AddWithValue("@nome", obj.Nome);
+                    command.Parameters.AddWithValue("@ruolo", obj.Ruolo);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
 
@@ -42,31 +53,42 @@ namespace MostriVsEroi.ADORepository
         {
             List<Giocatore> giocatori = new List<Giocatore>();
 
+           
             //ADO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Apro la connessione
-                connection.Open();
-
-                //Comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT * FROM Giocatori";
-
-
-                //Esecuzione
-                SqlDataReader reader = command.ExecuteReader();
-
-                //Lettura dati
-                while (reader.Read())
+                try
                 {
-                    giocatori.Add(reader.ToGiocatore());
-                }
+                    //Apro la connessione
+                    connection.Open();
 
-                //Chiudo connessione
-                reader.Close();
-                connection.Close();
+                    //Comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT * FROM Giocatori";
+
+
+                    //Esecuzione
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //Lettura dati
+                    while (reader.Read())
+                    {
+                        giocatori.Add(reader.ToGiocatore());
+                    }
+
+                    //Chiudo il reader
+                    reader.Close();
+                }
+                catch (SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return giocatori;
         }

@@ -16,22 +16,33 @@ namespace MostriVsEroi.ADORepository
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Aprire la connessione
-                connection.Open();
+                try
+                {
+                    //Aprire la connessione
+                    connection.Open();
 
-                //Creo il comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "INSERT INTO Mostri (NomeMostro, Classe, Arma, Livello) VALUES (@nome, @classe, @arma, @livello)";
+                    //Creo il comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "INSERT INTO Mostri (NomeMostro, Classe, Arma, Livello) VALUES (@nome, @classe, @arma, @livello)";
 
-                //Valori
-                command.Parameters.AddWithValue("@nome", obj.Nome);
-                command.Parameters.AddWithValue("@classe", obj.Classe);
-                command.Parameters.AddWithValue("@arma", obj.ArmaScelta.NomeArma);
-                command.Parameters.AddWithValue("@livello", obj.LivelloMostro.Numero);
+                    //Valori
+                    command.Parameters.AddWithValue("@nome", obj.Nome);
+                    command.Parameters.AddWithValue("@classe", obj.Classe);
+                    command.Parameters.AddWithValue("@arma", obj.ArmaScelta.NomeArma);
+                    command.Parameters.AddWithValue("@livello", obj.LivelloMostro.Numero);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
 
@@ -52,31 +63,41 @@ namespace MostriVsEroi.ADORepository
             //ADO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Apro la connessione
-                connection.Open();
-
-                //Comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT * FROM MostriConPuntiDannoEPuntiVita WHERE Livello <= @livello";
-
-                //Parametro
-                //SqlParameter nomeParam = new SqlParameter();
-                command.Parameters.AddWithValue("@livello", numeroLivello);
-
-                //Esecuzione
-                SqlDataReader reader = command.ExecuteReader();
-
-                //Lettura dati
-                while (reader.Read())
+                try
                 {
-                    mostri.Add(reader.ToMostro());
-                }
+                    //Apro la connessione
+                    connection.Open();
 
-                //Chiudo connessione
-                reader.Close();
-                connection.Close();
+                    //Comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT * FROM MostriConPuntiDannoEPuntiVita WHERE Livello <= @livello";
+
+                    //Parametro
+                    //SqlParameter nomeParam = new SqlParameter();
+                    command.Parameters.AddWithValue("@livello", numeroLivello);
+
+                    //Esecuzione
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //Lettura dati
+                    while (reader.Read())
+                    {
+                        mostri.Add(reader.ToMostro());
+                    }
+
+                    //Chiudo connessione
+                    reader.Close();
+                }
+                catch (SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return mostri;
         }

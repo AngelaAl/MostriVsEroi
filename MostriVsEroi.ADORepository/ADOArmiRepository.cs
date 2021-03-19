@@ -34,31 +34,42 @@ namespace MostriVsEroi.ADORepository
             //ADO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Apro la connessione
-                connection.Open();
-
-                //Comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT * FROM Armi WHERE Classe = @nomeClasse";
-
-                //Parametro
-                //SqlParameter nomeParam = new SqlParameter();
-                command.Parameters.AddWithValue("@nomeClasse", classe.nomeClasse);
-
-                //Esecuzione
-                SqlDataReader reader = command.ExecuteReader();
-
-                //Lettura dati
-                while (reader.Read())
+                try
                 {
-                    armi.Add(reader.ToArma());
-                }
+                    //Apro la connessione
+                    connection.Open();
 
-                //Chiudo connessione
-                reader.Close();
-                connection.Close();
+                    //Comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT * FROM Armi WHERE Classe = @nomeClasse";
+
+                    //Parametro
+                    //SqlParameter nomeParam = new SqlParameter();
+                    command.Parameters.AddWithValue("@nomeClasse", classe.nomeClasse);
+
+                    //Esecuzione
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //Lettura dati
+                    while (reader.Read())
+                    {
+                        armi.Add(reader.ToArma());
+                    }
+
+                    //Chiudo il reader
+                    reader.Close();
+                }
+                catch(SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    //Chiudo connessione
+                    connection.Close();
+                }
             }
             return armi;
         }

@@ -14,7 +14,15 @@ namespace MostriVsEroi
     //Tutti questi metodi sono utilizzati nella classe InterazioneUtente
     public static class RegoleGioco
     {
+        //Campo per il service provider
         private static ServiceProvider serviceProvider = DIConfiguration.Configurazione();
+
+
+        //Metodi
+
+
+        //Controllo se il nome del giocatore è già presente nel db
+        //Restituisce l'oggetto giocatore
         public static Giocatore CheckGiocatore(string nomeGiocatore)
         {
             GiocatoreService giocatoreService = serviceProvider.GetService<GiocatoreService>();
@@ -23,19 +31,20 @@ namespace MostriVsEroi
             {
                 if (giocatore.Nome == nomeGiocatore)
                 {
-                    Console.WriteLine("Bentornato " + nomeGiocatore);
+                    Console.WriteLine("Bentornato " + nomeGiocatore +"!!");
                     return giocatore;
                 }
 
             }
             var nuovoGiocatore = new Giocatore(nomeGiocatore) { };
             giocatoreService.CreateGiocatore(nuovoGiocatore);
-            Console.WriteLine("Benvenuto " + nomeGiocatore);
+            Console.WriteLine("Benvenuto " + nomeGiocatore + "!!");
             return nuovoGiocatore;
             
         }
 
-        //PASSAGGIO DI LIVELLO
+
+        //Funzione che restituisce la lista completa di livelli dal db
         public static List<Livello> ListaLivelli()
         {
             LivelloService livelloService = serviceProvider.GetService<LivelloService>();
@@ -44,6 +53,10 @@ namespace MostriVsEroi
         }
         
 
+        //Dato l'eroe (e quindi il suo livello) e la lista totale di livelli
+        //controllo se l'eroe ha abbastanza punti accumulati per il passaggio di livello
+        //Restituisce l'eroe con il passaggio di livello e il refill di punti vita 
+        //(se non c'è stato il passaggio di livello, restituisce l'eroe che c'è come parametro)
         public static Eroe CheckPassaggioDiLivello(Eroe eroe, List<Livello> livelli)
         {
             foreach(Livello livello in livelli)
@@ -59,6 +72,8 @@ namespace MostriVsEroi
 
         }
 
+
+        //Restituisce la lista delle classi disponibili per il personaggio eroe
         public static List<Classe> ClassiPerEroe()
         {
             ClasseService classeService = serviceProvider.GetService<ClasseService>();
@@ -66,6 +81,8 @@ namespace MostriVsEroi
             return classi;
         }
 
+
+        //Restituisce la lista delle classi disponibili per il personaggio mostro
         public static List<Classe> ClassiPerMostro()
         {
             ClasseService classeService = serviceProvider.GetService<ClasseService>();
@@ -73,6 +90,9 @@ namespace MostriVsEroi
             return classi;
         }
 
+
+        //Data una classe come parametro
+        //Restituisce tutte le armi disponibili per quella classe
         public static List<Arma> ArmiPerClasse(Classe classe)
         {
             ArmaService armaService = serviceProvider.GetService<ArmaService>();
@@ -80,6 +100,11 @@ namespace MostriVsEroi
             return armi;
         }
 
+
+        //Dato in input il nome inserito dall'utente per un nuovo eroe
+        //controlla se il nome è già presente nel db
+        //restituisce true se si può procedere con la creazione di un nuovo eroe
+        //false se è già presente un eroe con quel nome
         public static bool ControlloNomeEroeUnico(string nomeNuovoEroe)
         {
             EroeService eroeService = serviceProvider.GetService<EroeService>();
@@ -94,6 +119,10 @@ namespace MostriVsEroi
             return true;
 
         }
+
+
+        //Dato un oggetto eroe come parametro
+        //Crea l'eroe nel db
         public static void CreaEroe(Eroe eroe)
         {
             EroeService eroeService = serviceProvider.GetService<EroeService>();
@@ -103,18 +132,27 @@ namespace MostriVsEroi
             statisticaService.CreateNewStatistica(statistica);
         }
 
+
+        //Dato un oggetto eroe come parametro
+        //Elimina l'eroe dal database (lo elimina da Eroi e da Statistiche)
         public static void EliminaEroe(Eroe eroe)
         {
             EroeService eroeService = serviceProvider.GetService<EroeService>();
             eroeService.DeleteEroe(eroe);
         }
 
+
+        //Dato un oggetto eroe come parametro
+        //Fa l'update nel database di quell'eroe
         public static void SalvaEroe(Eroe eroe)
         {
             EroeService eroeService = serviceProvider.GetService<EroeService>();
             eroeService.UpdateEroe(eroe);
         }
 
+
+        //Dato un giocatore come parametro
+        //Restituisce la lista di tutti gli eroi di quel giocatore (dal db)
         public static List<Eroe> EroiDelGiocatore(Giocatore giocatore)
         {
             EroeService eroeService = serviceProvider.GetService<EroeService>();
@@ -122,6 +160,10 @@ namespace MostriVsEroi
             return eroi;
         }
 
+
+        //Dato un eroe (e quindi il suo livello)
+        //prende la lista completa di tutti i mostri con il livello minore o ugale a quello dell'eroe e sorteggia un mostro 
+        //Restituisceil mostro sorteggiato
         public static Mostro SorteggioMostro(Eroe eroe)
         {
             MostroService mostroService = serviceProvider.GetService<MostroService>();
@@ -131,30 +173,43 @@ namespace MostriVsEroi
             return mostri[indiceEstratto];
         }
 
+
+
+        //Dato eroe e i millisecondi che ha giocato nella partita
+        //Aggiorna la statistica sul db aggiungento i millisecondi
         public static void AggiornaStatistica(Eroe eroe, int millisecondi)
         {
             StatisticaService statisticaService = serviceProvider.GetService<StatisticaService>();
             statisticaService.UpdateStatistica(eroe, millisecondi);
         }
 
+
+        //Dato un oggetto mostro
+        //Lo crea nel db
         public static void CreaMostro(Mostro mostro)
         {
             MostroService mostroService = serviceProvider.GetService<MostroService>();
             mostroService.CreateNewMostro(mostro);
         }
 
+        //Restituisce la lista di tutte le statistiche dal db
         public static List<Statistica> AllStatistiche()
         {
             StatisticaService statisticaService = serviceProvider.GetService<StatisticaService>();
             return statisticaService.GetStatistiche().ToList();
         }
 
+
+        //Dato un giocatore come parametro
+        //Restituisce la lista delle statistiche di quel giocatore
         public static List<Statistica> StatisticheByGiocatore(Giocatore giocatore)
         {
             StatisticaService statisticaService = serviceProvider.GetService<StatisticaService>();
             return statisticaService.GetStatisticheByGiocatore(giocatore).ToList();
         }
 
+
+        //Restituisce la lista di tutti i giocatori dal db
         public static List<Giocatore> AllGiocatori()
         {
             GiocatoreService giocatoreService = serviceProvider.GetService<GiocatoreService>();

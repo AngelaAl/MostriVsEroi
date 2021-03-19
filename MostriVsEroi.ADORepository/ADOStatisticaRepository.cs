@@ -16,20 +16,31 @@ namespace MostriVsEroi.ADORepository
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Aprire la connessione
-                connection.Open();
+                try
+                {
+                    //Aprire la connessione
+                    connection.Open();
 
-                //Creo il comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "INSERT INTO Statistiche (NomeEroe, TempoTotaleGioco) VALUES (@nome, @tempoTotaleGioco)";
+                    //Creo il comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "INSERT INTO Statistiche (NomeEroe, TempoTotaleGioco) VALUES (@nome, @tempoTotaleGioco)";
 
-                //Valori
-                command.Parameters.AddWithValue("@nome", obj.NomeEroe);
-                command.Parameters.AddWithValue("@tempoTotaleGioco", obj.TempoTotaleGioco);
+                    //Valori
+                    command.Parameters.AddWithValue("@nome", obj.NomeEroe);
+                    command.Parameters.AddWithValue("@tempoTotaleGioco", obj.TempoTotaleGioco);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
 
@@ -45,27 +56,37 @@ namespace MostriVsEroi.ADORepository
             //ADO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Apro la connessione
-                connection.Open();
-
-                //Comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT * FROM StatistichePuntiAccumulatiGiocatore";
-
-                //Esecuzione
-                SqlDataReader reader = command.ExecuteReader();
-
-                //Lettura dati
-                while (reader.Read())
+                try
                 {
-                    statistiche.Add(reader.ToStatistica());
-                }
+                    //Apro la connessione
+                    connection.Open();
 
-                //Chiudo connessione
-                reader.Close();
-                connection.Close();
+                    //Comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT * FROM StatistichePuntiAccumulatiGiocatore";
+
+                    //Esecuzione
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //Lettura dati
+                    while (reader.Read())
+                    {
+                        statistiche.Add(reader.ToStatistica());
+                    }
+
+                    //Chiudo il reader
+                    reader.Close();
+                }
+                catch (SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return statistiche;
         }
@@ -77,30 +98,40 @@ namespace MostriVsEroi.ADORepository
             //ADO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Apro la connessione
-                connection.Open();
-
-                //Comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT * FROM StatistichePuntiAccumulatiGiocatore WHERE NomeGiocatore = @nome";
-
-                //Parametro
-                command.Parameters.AddWithValue("@nome", giocatore.Nome);
-
-                //Esecuzione
-                SqlDataReader reader = command.ExecuteReader();
-
-                //Lettura dati
-                while (reader.Read())
+                try
                 {
-                    statistiche.Add(reader.ToStatistica());
-                }
+                    //Apro la connessione
+                    connection.Open();
 
-                //Chiudo connessione
-                reader.Close();
-                connection.Close();
+                    //Comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT * FROM StatistichePuntiAccumulatiGiocatore WHERE NomeGiocatore = @nome";
+
+                    //Parametro
+                    command.Parameters.AddWithValue("@nome", giocatore.Nome);
+
+                    //Esecuzione
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //Lettura dati
+                    while (reader.Read())
+                    {
+                        statistiche.Add(reader.ToStatistica());
+                    }
+
+                    //Chiudo il reader
+                    reader.Close();
+                }
+                catch (SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return statistiche;
         }
@@ -114,27 +145,33 @@ namespace MostriVsEroi.ADORepository
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Aprire la connessione
-                connection.Open();
-
-                //Creo il comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "UPDATE Statistiche SET TempoTotaleGioco += @millisecondi WHERE NomeEroe = @nome";
-
-                //Valori
-                command.Parameters.AddWithValue("@millisecondi", millisecondi);
-                command.Parameters.AddWithValue("@nome", eroe.Nome);
-
                 try
                 {
+                    //Aprire la connessione
+                    connection.Open();
+
+                    //Creo il comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "UPDATE Statistiche SET TempoTotaleGioco += @millisecondi WHERE NomeEroe = @nome";
+
+                    //Valori
+                    command.Parameters.AddWithValue("@millisecondi", millisecondi);
+                    command.Parameters.AddWithValue("@nome", eroe.Nome);
+
+                
                     command.ExecuteNonQuery();
                     return true;
                 }
                 catch (Exception)
                 {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
                     return false;
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
 

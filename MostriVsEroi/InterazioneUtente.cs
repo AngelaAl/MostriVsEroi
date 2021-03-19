@@ -10,8 +10,15 @@ namespace MostriVsEroi
     //per mantenere il Program più libero possibile
     public class InterazioneUtente
     {
+        //CAMPI
+
         //Campo per i livelli (mi servono spesso) per avere un unico accesso al db
         private static List<Livello> livelli = RegoleGioco.ListaLivelli();
+        //Non ho messo i mostri perchè
+
+
+
+        //METODI
 
         //Nome giocatore e controllo se presente nel db
         public static Giocatore Giocatore()

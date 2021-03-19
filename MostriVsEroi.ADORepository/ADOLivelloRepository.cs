@@ -29,27 +29,37 @@ namespace MostriVsEroi.ADORepository
             //ADO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                //Apro la connessione
-                connection.Open();
-
-                //Comando
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT * FROM Livelli";
-
-                //Esecuzione
-                SqlDataReader reader = command.ExecuteReader();
-
-                //Lettura dati
-                while (reader.Read())
+                try
                 {
-                    livelli.Add(reader.ToLivello());
-                }
+                    //Apro la connessione
+                    connection.Open();
 
-                //Chiudo connessione
-                reader.Close();
-                connection.Close();
+                    //Comando
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT * FROM Livelli";
+
+                    //Esecuzione
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //Lettura dati
+                    while (reader.Read())
+                    {
+                        livelli.Add(reader.ToLivello());
+                    }
+
+                    //Chiudo il reader
+                    reader.Close();
+                }
+                catch (SqlException)
+                {
+                    Console.WriteLine("Siamo spiacenti, è stato rilevato un errore");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return livelli;
         }
