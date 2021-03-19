@@ -12,6 +12,9 @@ namespace MostriVsEroi
     //Ho creato questa classe per raggruppare tutti i metodi che utilizzano il Service Provider
     //Ho cercato di non inserire interazione con l'utente
     //Tutti questi metodi sono utilizzati nella classe InterazioneUtente
+
+    //Mi sono accorta tardi di non aver usato i valori di ritorno (bool) delle varie funzioni di delete, update.
+    //So che è sbagliato ma non faccio in tempo a correggere e ad usarli come controllo.
     public static class RegoleGioco
     {
         //Campo per il service provider

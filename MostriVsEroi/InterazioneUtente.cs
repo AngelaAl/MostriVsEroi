@@ -136,8 +136,11 @@ namespace MostriVsEroi
         }
 
 
+
         //METODI richiamati nel Menu Principale
 
+        //Dato un eroe
+        //Gestisce la partita dell'eroe
         public static void Partita(Eroe eroePartita)
         {
             Stopwatch watch = new Stopwatch();
@@ -160,12 +163,15 @@ namespace MostriVsEroi
 
                 //Salvo l'attuale livello dell'eroe
                 int livello = eroePartita.Livello;
+
                 //Check per il passaggio di livello viene fatto solo se il livello attuale è diverso
                 //dal massimo livello disponibile (questo copre anche il caso in cui un eroe abbia già vinto)
                 if (livello != livelli[livelli.Count - 1].Numero)
                 {
                     eroePartita = RegoleGioco.CheckPassaggioDiLivello(eroePartita, livelli);
                 }
+
+                //Se il livello è cambiato
                 if (livello != eroePartita.Livello)
                 {
                     Console.WriteLine("Complimenti! Sei passato al livello {0}! \n Ora hai {1} punti vita!", eroePartita.Livello, eroePartita.PuntiVita);
